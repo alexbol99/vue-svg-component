@@ -15,14 +15,6 @@
                   stroke="black"
                   stroke-width="2"
                 />
-<!--      <polyline-->
-<!--          v-for="(line, index) in lines"-->
-<!--          :key="index"-->
-<!--          :points="line.points"-->
-<!--          fill="none"-->
-<!--          stroke="black"-->
-<!--          stroke-width="2"-->
-<!--      />-->
     </svg>
   </div>
 </template>
@@ -55,7 +47,6 @@ export default {
         ev.preventDefault()
         const svgContainer = this.$refs.svgContainer;
         const currentPoint = this.getSVGPoint(ev, svgContainer)
-        const len = this.currentLine.points.length
         if (this.lineStarted) {
           this.currentLine.points[this.currentLine.points.length - 1] = currentPoint
         }
@@ -76,10 +67,6 @@ export default {
       point.y = event.clientY;
 
       return point.matrixTransform(svgContainer.getScreenCTM().inverse());
-    },
-    startDrawing() {
-      this.drawing = true;
-      this.currentLine = { points: [] };
     },
     stopDrawing() {
       if (this.drawing) {
